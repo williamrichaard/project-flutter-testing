@@ -3,7 +3,7 @@ abstract class Utilities {
     try {
       return "${temperature!.toInt()} °C";
     } catch (_) {
-      return "erro de dados";
+      return "Erro de dados";
     }
   }
 }
