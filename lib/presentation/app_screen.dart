@@ -7,7 +7,7 @@ import 'widgets/data_page.dart';
 
 class AppScreen extends StatefulWidget {
   const AppScreen({
-    Key? key,
+    Key? key, //required MockDataRepository repository,  <<-- Para usar o mock nos testes
   }) : super(key: key);
 
   @override
