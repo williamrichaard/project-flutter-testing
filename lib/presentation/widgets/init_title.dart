@@ -9,7 +9,7 @@ class InitTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
         child: Text(
-      "Atualize seus dados",
+      "Atualizar dados",
       style: TextStyle(
         color: Colors.green,
         fontSize: 25,
