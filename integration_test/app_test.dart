@@ -7,16 +7,16 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group("AppScreen", () {
-    testWidgets("Проверка стартового экрана", (WidgetTester tester) async {
+    testWidgets("Testando a tela inicial", (WidgetTester tester) async {
       await tester.pumpWidget(const MaterialApp(
         home: AppScreen(),
       ));
-      final textFinder = find.text("Обновите данные");
+      final textFinder = find.text("Atualizar dados");
       expect(textFinder, findsOneWidget);
       await Future.delayed(const Duration(seconds: 5));
     });
 
-    testWidgets("Тест нажатия на FAB", (WidgetTester tester) async {
+    testWidgets("Teste de clique FAB", (WidgetTester tester) async {
       await tester.pumpWidget(const MaterialApp(
         home: AppScreen(),
       ));
@@ -24,8 +24,13 @@ void main() {
       expect(fabFinder, findsOneWidget);
       await tester.tap(fabFinder);
       await tester.pumpAndSettle();
-      final currentTempTextFinder = find.text("36 °C");
+      final mainTextFinder = find.text("Brasília");
+      final tempTextFinder = find.text("Temperatura");
+      final currentTempTextFinder = find.text("34 °C");
+      expect(mainTextFinder, findsOneWidget);
+      expect(tempTextFinder, findsOneWidget);
       expect(currentTempTextFinder, findsOneWidget);
+      /// Um ​​atraso é necessário aqui, apenas para que o teste não feche imediatamente.
       await Future.delayed(const Duration(seconds: 5));
     });
   });
