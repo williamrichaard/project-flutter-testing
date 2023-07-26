@@ -5,7 +5,7 @@ void main() {
 
   tearDown(() => print('Executar tearDown'));
 
-  test("Тест 1", () => print('Executar Teste 1'));
+  test("Teste 1", () => print('Executar Teste 1'));
 
-  test("Тест 2", () => print('Executar Teste 2'));
+  test("Teste 2", () => print('Executar Teste 2'));
 }
