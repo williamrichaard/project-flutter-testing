@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:innopolis_test/presentation/app_screen.dart';
+import 'package:innopolis_test/presentation/weather_app_screen.dart';
+import 'package:innopolis_test/data/test_data_repository.dart';
 
 void main() {
-  runApp(const MaterialApp(
+  final repository = TestDataRepository();
+  runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: AppScreen(),
+    home: WeatherAppScreen(repository: repository),
   ));
 }

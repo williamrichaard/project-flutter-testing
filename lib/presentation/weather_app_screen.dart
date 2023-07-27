@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:innopolis_test/data/mock_data_repository.dart';
+import 'package:innopolis_test/data/test_data_repository.dart';
 import 'package:innopolis_test/domain/model/data_model.dart';
 import 'package:innopolis_test/presentation/widgets/init_title.dart';
 
 import 'widgets/data_page.dart';
 
-class AppScreen extends StatefulWidget {
-  const AppScreen({
-    Key? key, //required MockDataRepository repository,  <<-- Para usar o mock nos testes
+class WeatherAppScreen extends StatefulWidget {
+  const WeatherAppScreen({
+    Key? key, required TestDataRepository repository,  //<<-- Para usar o mock nos testes
   }) : super(key: key);
 
   @override
-  State<AppScreen> createState() => _AppScreenState();
+  State<WeatherAppScreen> createState() => _WeatherAppScreenState();
 }
 
-class _AppScreenState extends State<AppScreen> {
+class _WeatherAppScreenState extends State<WeatherAppScreen> {
   Future<DataModel>? futureDataModel;
-  final dataRepository = MockDataRepository();
+  final dataRepository = TestDataRepository();
 
   @override
   Widget build(BuildContext context) {

@@ -1,36 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:innopolis_test/presentation/app_screen.dart';
+import 'package:innopolis_test/presentation/weather_app_screen.dart';
 import 'package:integration_test/integration_test.dart';
+import 'package:innopolis_test/data/test_data_repository.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  group("AppScreen", () {
-    testWidgets("Testando a tela inicial", (WidgetTester tester) async {
-      await tester.pumpWidget(const MaterialApp(
-        home: AppScreen(),
+  group("Tela do Aplicativo", () {
+    late TestDataRepository repository;
+    late WidgetTester tester;
+
+    setUp(() {
+      repository = TestDataRepository();
+    });
+
+    tearDown(() {
+      // Limpar recursos após cada teste, se necessário
+    });
+
+    testWidgets("Testando a tela inicial", (tester) async {
+      tester = tester;
+      await tester.pumpWidget(MaterialApp(
+        home: WeatherAppScreen(repository: repository),
       ));
-      final textFinder = find.text("Atualizar dados");
-      expect(textFinder, findsOneWidget);
+      expect(find.text("Atualizar dados"), findsOneWidget);
       await Future.delayed(const Duration(seconds: 5));
     });
 
-    testWidgets("Teste de clique FAB", (WidgetTester tester) async {
-      await tester.pumpWidget(const MaterialApp(
-        home: AppScreen(),
+    testWidgets("Teste de clique FAB", (tester) async {
+      tester = tester;
+      await tester.pumpWidget(MaterialApp(
+        home: WeatherAppScreen(repository: repository),
       ));
-      final fabFinder = find.byType(FloatingActionButton);
-      expect(fabFinder, findsOneWidget);
-      await tester.tap(fabFinder);
+      expect(find.byType(FloatingActionButton), findsOneWidget);
+      await tester.tap(find.byType(FloatingActionButton));
+      await tester.pump(); // Aguarda a atualização da interface após o clique no botão
       await tester.pumpAndSettle();
-      final mainTextFinder = find.text("Brasília");
-      final tempTextFinder = find.text("Temperatura");
-      final currentTempTextFinder = find.text("34 °C");
-      expect(mainTextFinder, findsOneWidget);
-      expect(tempTextFinder, findsOneWidget);
-      expect(currentTempTextFinder, findsOneWidget);
-      /// Um ​​atraso é necessário aqui, apenas para que o teste não feche imediatamente.
+      expect(find.text("Brasília"), findsOneWidget);
+      expect(find.text("Temperatura"), findsOneWidget);
+      expect(find.text("34 °C"), findsOneWidget);
       await Future.delayed(const Duration(seconds: 5));
     });
   });

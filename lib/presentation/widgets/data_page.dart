@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:innopolis_test/domain/model/data_model.dart';
 
-import '../../utilits/utilities.dart';
+import '../../utilits/temperature_converter.dart';
 
 class BodyPage extends StatelessWidget {
   final DataModel? dataModel;
@@ -29,7 +29,7 @@ class BodyPage extends StatelessWidget {
           height: 15,
         ),
         _RowData(
-          data: Utilities.convertHumanTemp(dataModel?.temp),
+          data: TemperatureConverter.convertHumanTemp(dataModel?.temp),
           label: "Temperatura",
         ),
       ],
